@@ -1,0 +1,44 @@
+resource "aws_dynamodb_table_item" "counter_franquicia" {
+  table_name = aws_dynamodb_table.counters.name
+  hash_key   = "entity"
+  item       = jsonencode({
+    entity   = "franquicia"
+    last_id  = 0
+  })
+}
+
+resource "aws_dynamodb_table_item" "counter_franquicia_sucursal" {
+  table_name = aws_dynamodb_table.counters.name
+  hash_key   = "entity"
+  item       = jsonencode({
+    entity   = "franquicia_sucursal"
+    last_id  = 0
+  })
+}
+
+resource "aws_dynamodb_table_item" "counter_sucursal" {
+  table_name = aws_dynamodb_table.counters.name
+  hash_key   = "entity"
+  item       = jsonencode({
+    entity   = "sucursal"
+    last_id  = 0
+  })
+}
+
+resource "aws_dynamodb_table_item" "counter_sucursal_producto" {
+  table_name = aws_dynamodb_table.counters.name
+  hash_key   = "entity"
+  item       = jsonencode({
+    entity   = "sucursal_producto"
+    last_id  = 0
+  })
+}
+
+resource "aws_dynamodb_table_item" "counter_producto" {
+  table_name = aws_dynamodb_table.counters.name
+  hash_key   = "entity"
+  item       = jsonencode({
+    entity   = "producto"
+    last_id  = 0
+  })
+}
