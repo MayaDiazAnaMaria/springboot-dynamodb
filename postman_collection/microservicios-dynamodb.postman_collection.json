@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "8fbab990-9901-4e9c-8e23-maxstock",
+    "name": "Microservicios Franquicia DynamoDB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear Franquicia",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"nombre\": \"Franquicia A\"\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia"]}
+      }
+    },
+    {
+      "name": "Agregar Sucursales a Franquicia",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"nombreFranquicia\": \"Franquicia A\",\n  \"sucursales\": [\n    {\"nombre\": \"Sucursal Centro\"},\n    {\"nombre\": \"Sucursal Norte\"}\n  ]\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal"]}
+      }
+    },
+    {
+      "name": "Agregar Productos a Sucursal",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"nombreFranquicia\": \"Franquicia A\",\n  \"nombreSucursal\": \"Sucursal Centro\",\n  \"productos\": [\n    {\"nombre\": \"Producto X\"},\n    {\"nombre\": \"Producto Y\"}\n  ]\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal/producto","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal","producto"]}
+      }
+    },
+    {
+      "name": "Eliminar Producto de Sucursal",
+      "request": {
+        "method": "DELETE",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"nombreFranquicia\": \"Franquicia A\",\n  \"nombreSucursal\": \"Sucursal Centro\",\n  \"nombreProducto\": \"Producto X\"\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal/producto/delete","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal","producto","delete"]}
+      }
+    },
+    {
+      "name": "Actualizar Nombre Franquicia",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"idFranquicia\": 1,\n  \"nombre\": \"Franquicia Renombrada\"\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/nombre","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","nombre"]}
+      }
+    },
+    {
+      "name": "Actualizar Nombre Sucursal",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"idSucursal\": 2,\n  \"nombre\": \"Sucursal Renombrada\"\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal/nombre","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal","nombre"]}
+      }
+    },
+    {
+      "name": "Actualizar Nombre Producto",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"idProducto\": 3,\n  \"nombre\": \"Producto Premium\"\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal/producto/nombre","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal","producto","nombre"]}
+      }
+    },
+    {
+      "name": "Actualizar Stock Producto",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"idProducto\": 3,\n  \"cantidad\": 150\n}"},
+        "url": {"raw": "http://localhost:8080/franquicia/sucursal/producto/cantidad","protocol": "http","host": ["localhost"],"port": "8080","path": ["franquicia","sucursal","producto","cantidad"]}
+      }
+    },
+    {
+      "name": "Ver producto con más stock por sucursal",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/franquicia/max-stock?nombreFranquicia=Franquicia A",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["franquicia","max-stock"],
+          "query": [{"key": "nombreFranquicia", "value": "Franquicia A"}]
+        }
+      }
+    }
+  ]
+}
